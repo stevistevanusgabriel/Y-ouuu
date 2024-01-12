@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> i love you </title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    #introContainer {
+      width: 800px;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+    }
+
+    #introImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #startButton {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    #imageFrame {
+      width: 800px;
+      height: 400px;
+      overflow: hidden;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+    }
+
+    .changingImage {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Ensure the entire image is displayed */
+      transition: opacity 1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+<div id="introContainer">
+  <img id="introImage" src="img/LB.jpg" alt="Intro Image">
+  <button id="startButton">KLIK DI SINI</button>
+</div>
+<h1>The Only One</h1>
+
+<div id="imageFrame" style="display: none;">
+  <img id="changingImage" src="img/satu.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/dua.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/tiga.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/empat.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/lima.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/enam.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/tujuh.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/delapan.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/sembilan.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/sepuluh.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/sebelas.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/duabelas.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/tigabelas.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/empatbelas.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/limabelas.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/enambelas.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/tujuhbelas.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/delapanbelas.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/sembilanbelas.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/duapuluh.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/duapuluhsatu.jpg" alt="Slideshow Image">
+  <img id="changingImage" src="img/duapuluhdua.jpg" alt="Slideshow Image">
+
+  <!-- Add more images as needed -->
+</div>
+
+<audio id="musicPlayer" controls autoplay loop>
+  <source src="audio/TheOnlyOne.mp3" type="audio/mp3">
+</audio>
+
+<script>
+  const imageList = [
+    "img/satu.jpg", 
+    "img/dua.jpg", 
+    "img/tiga.jpg",
+    "img/empat.jpg",
+    "img/lima.jpg",
+    "img/enam.jpg",
+    "img/tujuh.jpg",
+    "img/delapan.jpg",
+    "img/sembilan.jpg",
+    "img/sepuluh.jpg",
+    "img/sebelas.jpg",
+    "img/duabelas.jpg",
+    "img/tigabelas.jpg",
+    "img/empatbelas.jpg",
+    "img/limabelas.jpg", 
+    "img/enambelas.jpg",
+    "img/tujuhbelas.jpg",
+    "img/delapanbelas.jpg",
+    "img/sembilanbelas.jpg",
+    "img/duapuluh.jpg",
+    "img/duapuluhsatu.jpg",
+    "img/duapuluhdua.jpg"
+  ];
+  
+  let currentImageIndex = 0;
+  const introContainer = document.getElementById('introContainer');
+  const startButton = document.getElementById('startButton');
+  const imageFrame = document.getElementById('imageFrame');
+  const introImage = document.getElementById('introImage');
+  const musicPlayer = document.getElementById('musicPlayer');
+
+  function changeImage() {
+    const currentImage = imageFrame.querySelector('.changingImage');
+    
+    currentImage.style.opacity = 0;
+    
+    setTimeout(() => {
+      currentImage.src = imageList[currentImageIndex];
+      currentImage.style.opacity = 1;
+      currentImageIndex = (currentImageIndex + 1) % imageList.length;
+    }, 1000); // Change image after 1 second (to allow smooth transition)
+  }
+
+  // Show slideshow after clicking the start button
+  startButton.addEventListener('click', function() {
+    introContainer.style.display = 'none';
+    imageFrame.style.display = 'block';
+
+    // Initial setup
+    imageFrame.innerHTML = `<img class="changingImage" src="${imageList[0]}" alt="Slideshow Image">`;
+
+    setInterval(changeImage, 5000); // Change image every 8 seconds
+
+    // Play music automatically
+    musicPlayer.play();
+  });
+</script>
+
+</body>
+</html>
